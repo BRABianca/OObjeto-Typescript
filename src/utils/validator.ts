@@ -3,7 +3,7 @@ export function validarCPF(cpf: string): boolean {
     cpf = cpf.replace(/[^\d]/g, '');
   
     if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) {
-      return false; // Verifica se o CPF tem 11 dígitos e se todos os números não são iguais
+      return false; // verifica se o CPF tem 11 dígitos e se todos os números não são iguais
     }
   
     // Cálculo do primeiro dígito verificador
