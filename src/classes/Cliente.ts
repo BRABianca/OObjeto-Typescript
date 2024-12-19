@@ -1,7 +1,7 @@
 import Pessoa from './Pessoa';
 
 class Cliente extends Pessoa {
-  private enderecos: string[] = [];
+  private readonly enderecos: string[] = [];
 
   adicionarEndereco(endereco: string): void {
     this.enderecos.push(endereco);

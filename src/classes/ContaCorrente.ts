@@ -8,23 +8,18 @@ class ContaCorrente extends Conta {
   }
 
   calcularSaldo(): number {
-    return this.saldo + this.limite;
+    const totalCreditos = this.creditos.reduce((total, credito) => total + credito.valor, 0);
+    const totalDebitos = this.debitos.reduce((total, debito) => total + debito.valor, 0);
+    return totalCreditos - totalDebitos + this.limite;
   }
 
-  sacar(valor: number): void {
+  transferir(valor: number, contaDestino: Conta): void {
     if (this.saldo + this.limite >= valor) {
-      this.saldo -= valor;
+      this.sacar(valor); // Subtrai da conta de origem
+      contaDestino.depositar(valor); // Adiciona à conta de destino
+      console.log(`Transferência de R$${valor} realizada com sucesso.`);
     } else {
-      console.log('Saldo insuficiente ou limite excedido');
-    }
-  }
-
-  transferir(valor: number, contaDestino: ContaCorrente): void {
-    if (this.saldo + this.limite >= valor) {
-      this.saldo -= valor;
-      contaDestino.depositar(valor);
-    } else {
-      console.log('Transferência não realizada.');
+      console.log('Saldo insuficiente para transferência.');
     }
   }
 }
