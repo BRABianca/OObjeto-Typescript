@@ -1,4 +1,4 @@
-import {validarCPF} from "../utils/validator";
+import {validarCPF} from '../utils/validator';
 
 abstract class Pessoa {
     constructor(
